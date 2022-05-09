@@ -20,9 +20,9 @@ void Interchange::nextOptimum(MDPSet& mdpSet, Solution& solution) {
   float initialDiversity = mdpSet.computeDiversity(solution.set_);
   float bestDiversity = initialDiversity;
 
-  for(const auto& inVector : solution.set_) {
+  for(const auto& inVector : baseSolution.set_) {
     for(const auto outVector : superSet) {
-      if(inVector == outVector || newSolution.set_.find(outVector) != newSolution.set_.end())
+      if(inVector == outVector || baseSolution.set_.find(outVector) != baseSolution.set_.end())
         continue;
       newSolution.set_.erase(inVector);
       newSolution.set_.insert(outVector);

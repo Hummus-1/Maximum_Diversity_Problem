@@ -65,11 +65,11 @@ float MDPSet::computeDiversity(const std::set<unsigned>& vectors, int candidate)
   float diversity = 0;
   for(const auto &v : candidateSet) {
     for(const auto &v2 : candidateSet) {
-      if(v != v2)
+      if(v2 > v)
         diversity += distance(v, v2);
     }
   }
-  return diversity / (candidateSet.size() * (candidateSet.size() - 1));
+  return diversity;
 }
 
 std::vector<float> MDPSet::computeGravityCenter(const std::set<unsigned>& vectors) {

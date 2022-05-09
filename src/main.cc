@@ -101,13 +101,13 @@
 // }
 
 int main () {
-  MDP::MDPSet mdpSet("data/max_div_20_2.txt");
+  MDP::MDPSet mdpSet("data/max_div_15_2.txt");
   std::set<unsigned> a {2, 7, 1};
   std::cout << mdpSet.computeDiversity(a) << '\n';
   std::set<unsigned> b {0, 11};
   std::cout << mdpSet.computeDiversity(b) << '\n';
   mdpSet.computeGravityCenter(mdpSet.getSuperSet());
-  MDP::GreedyMaximumDiversity greedyMDP;
+  MDP::GraspMaximumDiversity greedyMDP;
   MDP::Interchange* interchangeSearch = new MDP::Interchange;
   greedyMDP.Solve(mdpSet, interchangeSearch, 5);
 }

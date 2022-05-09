@@ -45,9 +45,7 @@ class GraspMaximumDiversity : public MaximumDiversity {
      */
     void generateSeed(MDPSet& mdpSet, std::vector<bool> &excludedNodes, std::vector<unsigned> &closerToDepot);
   private:
-    unsigned nodesOrder_;
-    unsigned pathsOrder_;
-    Solution closerToDepot_;
+    Solution farthestFromGravityCenter_;
 };
 
 }

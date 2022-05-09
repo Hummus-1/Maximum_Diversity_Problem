@@ -50,7 +50,7 @@ class MaximumDiversity {
      * @return Solution The solution path
      */
     Solution Solve(MDPSet &mdpSet, localSearch* lSearch, unsigned solutionSize);
-    int lastDiversity() { return lastDiversity_; }
+    float lastDiversity() { return lastDiversity_; }
   protected:
 
     /**
