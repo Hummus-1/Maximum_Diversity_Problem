@@ -26,6 +26,7 @@ class Interchange : public localSearch {
     ~Interchange() {}
 
     void nextOptimum(MDPSet& mdpSet, Solution& solution);
+    float difference(MDPSet& mdpSet, Solution& solution, unsigned inVector, unsigned outVector);
 };
 
 }

@@ -25,7 +25,7 @@ Solution GraspMaximumDiversity::solveProblem(MDPSet& mdpSet, localSearch* lSearc
       solution = newSolution;
     }
   }
-
+  lastDiversity_ = bestDiversity;
   return solution;
 
 

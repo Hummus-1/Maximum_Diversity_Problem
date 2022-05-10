@@ -110,4 +110,5 @@ int main () {
   MDP::GraspMaximumDiversity greedyMDP;
   MDP::Interchange* interchangeSearch = new MDP::Interchange;
   greedyMDP.Solve(mdpSet, interchangeSearch, 5);
+  std::cout << greedyMDP.lastDiversity() << '\n';
 }
