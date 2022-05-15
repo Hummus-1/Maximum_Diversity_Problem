@@ -2,9 +2,9 @@
 
 namespace MDP {
 
-Solution GreedyMaximumDiversity::greedyAlgorithm(MDPSet& mdpSet, localSearch* lSearch, unsigned solutionSize, Solution solution) {
+Solution GreedyMaximumDiversity::greedyAlgorithm(MDPSet& mdpSet, localSearch* lSearch, unsigned solutionSize, Solution solution, unsigned aleatorice) {
   while(solution.set_.size() < solutionSize) {
-    unsigned nextCandidate = mdpSet.farthestFromGravityCenter(solution.set_, solution.set_)[0];
+    unsigned nextCandidate = mdpSet.farthestFromGravityCenter(solution.set_, solution.set_, aleatorice)[rand() % aleatorice];
     solution.set_.insert(nextCandidate);
   }
   

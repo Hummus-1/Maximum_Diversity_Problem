@@ -14,13 +14,6 @@
 
 namespace MDP {
 
-// struct float {
-//   float() : x(0), y(0) {}
-//   float(int x, int y) : x(x), y(y) {}
-//   int x;
-//   int y;
-// };
-
 class MDPVector {
   public:
   MDPVector() {}
@@ -28,9 +21,6 @@ class MDPVector {
     numberOfVectors_(numberOfVectors), numberOfComponents_(numberOfComponents) {
     v_ = std::vector<float>(numberOfVectors * numberOfComponents);
   }
-  // void setSize() {
-  //   v_.resize(numberOfVectors_ * numberOfVectors_);
-  // }
   float& at(const unsigned vector, const unsigned component) {
     return v_[vector * numberOfComponents_ + component];
   }
@@ -51,10 +41,6 @@ class MDPVector {
     unsigned numberOfComponents_;
 };
 
-/**
- * @brief Represents an adjacency matrix
- * 
- */
 class MDPSet {
   public: 
     MDPSet(unsigned numberOfVectors, unsigned numberOfComponents);

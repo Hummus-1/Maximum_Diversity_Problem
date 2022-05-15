@@ -27,7 +27,7 @@ class GreedyMaximumDiversity : public MaximumDiversity {
      * @param numberOfVehicles The number of vehicles
      * @return std::vector<std::vector<unsigned> > The solution paths
      */
-    Solution greedyAlgorithm(MDPSet& mdpSet, localSearch* lSearch, unsigned solutionSize, Solution solution);
+    Solution greedyAlgorithm(MDPSet& mdpSet, localSearch* lSearch, unsigned solutionSize, Solution solution, unsigned aleatorice = 1);
   protected:
     /**
      * @brief Solve the problem with the adjacency matrix and number of vehicles given

@@ -10,6 +10,7 @@
 #include <deque>
 #include <memory>
 
+#include "BranchAndBoundMDP.h"
 #include "GraspMaximumDiversity.h"
 #include "GreedyMaximumDiversity.h"
 #include "MaximumDiversity.h"
@@ -107,7 +108,7 @@ int main () {
   std::set<unsigned> b {0, 11};
   std::cout << mdpSet.computeDiversity(b) << '\n';
   mdpSet.computeGravityCenter(mdpSet.getSuperSet());
-  MDP::GraspMaximumDiversity greedyMDP;
+  MDP::DepthGraspBranchAndBoundMDP greedyMDP;
   MDP::Interchange* interchangeSearch = new MDP::Interchange;
   greedyMDP.Solve(mdpSet, interchangeSearch, 5);
   std::cout << greedyMDP.lastDiversity() << '\n';
