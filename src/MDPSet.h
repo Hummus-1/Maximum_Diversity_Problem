@@ -10,6 +10,7 @@
 #include <set>
 
 #include "menuUtility.h"
+#include "VRPVector.h"
 #include "Solution.h"
 
 namespace MDP {
@@ -57,13 +58,16 @@ class MDPSet {
     //int distance(unsigned vector1, unsigned vector2, unsigned component) const;
     float distance(unsigned vector1, unsigned vector2) const;
     float distance(unsigned vector1, std::vector<float> vector2) const;
+    float distance(const std::set<unsigned>& vectorSet, unsigned vector) const;
 
     std::vector<float> computeGravityCenter(const std::set<unsigned>& vectors);
     float computeDiversity(const std::set<unsigned>& vectors, int candidate = -1);
     std::vector<unsigned> farthestFromGravityCenter(std::set<unsigned>& excludedVectores, std::set<unsigned>& excludedVectors, unsigned numberOfVectors = 1);
   private:
+    void computeDistances();
     void importInstance(std::string path);
 
+    VRP::VRPVector<float> distanceMatrix_;
     MDPVector vectorSet_;
 };
 

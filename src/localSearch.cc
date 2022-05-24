@@ -24,7 +24,6 @@ float Interchange::difference(MDPSet& mdpSet, Solution& solution, unsigned inVec
 
 void Interchange::nextOptimum(MDPSet& mdpSet, Solution& solution) {
   const unsigned NUMBER_OF_VECTORS = mdpSet.numberOfVectors();
-  const unsigned NUMBER_OF_COMPONENTS = mdpSet.numberOfComponents();
   Solution baseSolution = solution;
   std::set superSet = mdpSet.getSuperSet(); 
   float initialDiversity = mdpSet.computeDiversity(solution.set_);

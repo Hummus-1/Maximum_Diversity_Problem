@@ -10,10 +10,26 @@ MDPSet::MDPSet(unsigned numberOfVectors, unsigned numberOfComponents) :
       vectorSet_.at(i, j) = rand() % 10;
     }
   }
+  computeDistances();
 }
 
 MDPSet::MDPSet(std::string path) {
   importInstance(path);
+  computeDistances();
+}
+
+void MDPSet::computeDistances() {
+  const unsigned NUMBER_OF_VECTORS = vectorSet_.numberOfVectors();
+  distanceMatrix_ = VRP::VRPVector<float>(NUMBER_OF_VECTORS);
+  for(unsigned i = 0; i < NUMBER_OF_VECTORS; ++i) {
+    for(unsigned j = 0; j < NUMBER_OF_VECTORS; ++j) {
+      float dist = 0;
+      for(unsigned k = 0; k < vectorSet_.numberOfComponents(); ++k) {
+        dist += std::pow(vectorSet_.at(i, k) - vectorSet_.at(j, k), 2);
+      }
+      distanceMatrix_.at(i, j) = std::sqrt(dist);
+    }
+  }
 }
 
 std::set<unsigned> MDPSet::getSuperSet() {
@@ -39,11 +55,7 @@ float MDPSet::at(unsigned vector, unsigned component) const {
 // }
 
 float MDPSet::distance(unsigned vector1, unsigned vector2) const {
-  float dist = 0;
-  for(unsigned i = 0; i < vectorSet_.numberOfComponents(); ++i) {
-    dist += std::pow(vectorSet_.at(vector1, i) - vectorSet_.at(vector2, i), 2);
-  }
-  return std::sqrt(dist);
+  return distanceMatrix_.at(vector1, vector2);
 }
 
 float MDPSet::distance(unsigned vector1, std::vector<float> vector2) const {
@@ -54,6 +66,14 @@ float MDPSet::distance(unsigned vector1, std::vector<float> vector2) const {
     dist += std::pow(vectorSet_.at(vector1, i) - vector2[i], 2);
   }
   return std::sqrt(dist);
+}
+
+float MDPSet::distance(const std::set<unsigned>& vectorSet, unsigned vector) const {
+  float dist = 0.0;
+  for(const auto& vec : vectorSet) {
+    dist += distance(vec, vector);
+  }
+  return dist;
 }
 
 float MDPSet::computeDiversity(const std::set<unsigned>& vectors, int candidate) {

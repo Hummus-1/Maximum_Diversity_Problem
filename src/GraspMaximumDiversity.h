@@ -17,6 +17,7 @@ namespace MDP {
 class GraspMaximumDiversity : public MaximumDiversity {
   public:
     GraspMaximumDiversity() {}
+    unsigned lastNumberOfIterations() { return numberOfIterations_; }
   protected:
     /**
      * @brief Solve the problem with the adjacency matrix and number of vehicles given
@@ -28,6 +29,7 @@ class GraspMaximumDiversity : public MaximumDiversity {
     Solution solveProblem(MDPSet& mdpSet, localSearch* lSearch, unsigned solutionSize);
   private:
     Solution farthestFromGravityCenter_;
+    unsigned numberOfIterations_ = 0;
 };
 
 }

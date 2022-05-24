@@ -3,8 +3,8 @@
 namespace MDP {
 
 Solution GraspMaximumDiversity::solveProblem(MDPSet& mdpSet, localSearch* lSearch, unsigned solutionSize) {
+  numberOfIterations_ = 0;
   const unsigned NUMBER_OF_VECTORS = mdpSet.numberOfVectors();
-  const unsigned NUMBER_OF_COMPONENTS = mdpSet.numberOfComponents();
   std::set superSet = mdpSet.getSuperSet();
   Solution solution;
   float bestDiversity {-1.0};
@@ -16,12 +16,18 @@ Solution GraspMaximumDiversity::solveProblem(MDPSet& mdpSet, localSearch* lSearc
     farthestFromGravityCenter_.set_.insert(farthestFromGravityCenter);
   }
 
+  unsigned lastImprovement = 0;
   for(unsigned aleatorice = 1; aleatorice <= solutionSize; aleatorice++) {
+    if(lastImprovement + 2 < aleatorice) {
+      break;
+    }
     for(const auto& initialVector : farthestFromGravityCenter_.set_) {
+      ++numberOfIterations_;
       Solution newSolution(std::set<unsigned>{initialVector});
       newSolution = greedySolve.greedyAlgorithm(mdpSet, lSearch, solutionSize, newSolution);
       float newDiversity = greedySolve.lastDiversity();
       if(newDiversity > bestDiversity) {
+        lastImprovement = aleatorice;
         bestDiversity = newDiversity;
         solution = newSolution;
       }
